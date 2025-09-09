@@ -1,17 +1,36 @@
 import Image from "next/image";
+import { PWAInstallButton } from "@/components/ui/PWAInstallButton";
 
 export default function Home() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
+        <div className="flex flex-col items-center sm:items-start gap-4">
+          <Image
+            className="dark:invert"
+            src="/next.svg"
+            alt="Next.js logo"
+            width={180}
+            height={38}
+            priority
+          />
+          <div className="flex items-center gap-4">
+            <h1 className="text-2xl font-bold">TaleThreads PWA</h1>
+            <PWAInstallButton />
+          </div>
+        </div>
+        
+        <div className="bg-blue-50 dark:bg-blue-950 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
+          <h2 className="text-lg font-semibold mb-3 text-blue-900 dark:text-blue-100">🎉 Progressive Web App Features</h2>
+          <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-2">
+            <li>✅ Installable on mobile and desktop</li>
+            <li>✅ Works offline with service worker</li>
+            <li>✅ App-like experience</li>
+            <li>✅ Fast loading and caching</li>
+            <li>✅ Push notifications ready</li>
+          </ul>
+        </div>
+
         <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
           <li className="mb-2 tracking-[-.01em]">
             Get started by editing{" "}
