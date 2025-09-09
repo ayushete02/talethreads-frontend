@@ -1,4 +1,5 @@
-const CACHE_NAME = 'talethreads-v1';
+const CACHE_NAME = 'talethreads-v2';
+const DOMAIN = 'https://talethreads.xyz';
 const urlsToCache = [
   '/',
   '/offline',
@@ -6,6 +7,9 @@ const urlsToCache = [
   '/icons/icon.svg',
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',
+  '/next.svg',
+  '/_next/static/css/',
+  '/_next/static/chunks/',
 ];
 
 // Install event

@@ -1,8 +1,9 @@
 {
   "name": "TaleThreads",
   "short_name": "TaleThreads",
-  "description": "A progressive web application built with Next.js",
-  "start_url": "/",
+  "description": "A storytelling platform and progressive web application",
+  "start_url": "https://talethreads.xyz/",
+  "scope": "https://talethreads.xyz/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",

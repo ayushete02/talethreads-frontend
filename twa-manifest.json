@@ -1,0 +1,42 @@
+{
+  "packageId": "com.talethreads.app",
+  "host": "talethreads.xyz",
+  "name": "TaleThreads",
+  "launcherName": "TaleThreads",
+  "display": "standalone",
+  "themeColor": "#000000",
+  "navigationColor": "#000000",
+  "backgroundColor": "#ffffff",
+  "enableNotifications": true,
+  "startUrl": "https://talethreads.xyz/",
+  "iconUrl": "https://talethreads.xyz/icons/icon-512x512.png",
+  "maskableIconUrl": "https://talethreads.xyz/icons/icon-512x512.png",
+  "monochromeIconUrl": "https://talethreads.xyz/icons/icon-512x512.png",
+  "fallbackType": "customtabs",
+  "shortcuts": [
+    {
+      "name": "Home",
+      "short_name": "Home",
+      "url": "https://talethreads.xyz/",
+      "icons": [
+        {
+          "src": "https://talethreads.xyz/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "features": {
+    "delegatedNotifications": true,
+    "locationDelegation": true
+  },
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://talethreads.xyz/manifest.json",
+  "signingKey": {
+    "path": "./android.keystore",
+    "alias": "android"
+  },
+  "alphaDependencies": {
+    "enabled": false
+  }
+}
