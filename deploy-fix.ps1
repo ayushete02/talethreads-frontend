@@ -6,8 +6,9 @@ Write-Host ""
 
 Write-Host "📋 What was fixed:" -ForegroundColor Cyan
 Write-Host "• Node.js version updated from 18 to 20.x" -ForegroundColor White
+Write-Host "• Java version updated from 17 to 21 (required by Capacitor)" -ForegroundColor White
 Write-Host "• Capacitor CLI commands improved with fallbacks" -ForegroundColor White
-Write-Host "• Workflow now compatible with Capacitor CLI >= 20.0.0" -ForegroundColor White
+Write-Host "• Workflow now compatible with all requirements" -ForegroundColor White
 Write-Host ""
 
 $confirm = Read-Host "🚀 Ready to commit and push the fix? (y/n)"
@@ -18,11 +19,12 @@ if ($confirm -eq "y" -or $confirm -eq "Y") {
     git add .github/workflows/build-apk.yml
     
     Write-Host "💾 Committing fix..." -ForegroundColor Blue
-    git commit -m "Fix: Update Node.js to 20.x for Capacitor CLI compatibility
+    git commit -m "Fix: Update Node.js to 20.x and Java to 21 for Capacitor compatibility
 
 - Updated GitHub Actions workflow to use Node.js 20.x
+- Updated Java version from 17 to 21 (required by Capacitor)
 - Added fallback for Capacitor CLI commands
-- Resolves Capacitor CLI requirement for NodeJS >= 20.0.0"
+- Resolves build errors and compatibility issues"
     
     Write-Host "🚀 Pushing to GitHub..." -ForegroundColor Blue
     git push origin master
