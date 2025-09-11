@@ -1,5 +1,8 @@
 'use client';
 
+import { OfflineRetryButton } from '@/components/offline-retry-button';
+
+
 export default function Offline() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
@@ -26,12 +29,7 @@ export default function Offline() {
           <p className="text-gray-600 dark:text-gray-300 mb-6">
             It looks like you&apos;re not connected to the internet. Don&apos;t worry, you can still use some features of the app.
           </p>
-          <button
-            onClick={() => window.location.reload()}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
-          >
-            Try Again
-          </button>
+          <OfflineRetryButton />
         </div>
       </div>
     </div>

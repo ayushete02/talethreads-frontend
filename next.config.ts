@@ -1,19 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // output: 'export', // Re-enabling static export
   output: 'export',
   trailingSlash: true,
   images: {
     unoptimized: true
+  },
+  experimental: {
+    optimizePackageImports: ['lucide-react']
   }
 };
 
-// Use dynamic import to avoid TypeScript conflicts
-const withPWA = require('next-pwa')({
-  dest: "public",
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === "development",
-});
-
-export default withPWA(nextConfig);
+// Disable PWA for now to avoid build issues during static export
+export default nextConfig;

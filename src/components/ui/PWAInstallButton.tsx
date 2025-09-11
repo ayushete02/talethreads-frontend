@@ -1,6 +1,6 @@
 'use client';
 
-import { usePWAInstall } from '@/hooks/usePWAInstall';
+import { usePWAInstall } from '../../hooks/usePWAInstall';
 
 export const PWAInstallButton = () => {
   const { isInstallable, isInstalled, installPWA } = usePWAInstall();
