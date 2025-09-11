@@ -1,10 +1,7 @@
-﻿import AppHeader from '@/components/layout/app-header';
+import AppHeader from '@/components/layout/app-header';
 import Footer from '@/components/layout/footer';
 import StoryCard from '@/components/ui/story-card';
 import { Button } from '@/components/ui/button';
-
-// Force dynamic rendering to avoid pre-rendering issues
-export const dynamic = 'force-dynamic';
 
 export default function CategoriesPage() {
   const categories = [
@@ -22,7 +19,7 @@ export default function CategoriesPage() {
     title: 'Title of the story',
     genre: 'Genre',
     author: 'Author Name',
-    rating: 4.8,
+    rating: 4.8,    
     views: '1.2k'
   }));
 

@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { Book, Clock, Star, Filter, Search, Grid, List } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,9 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AppHeader from "@/components/layout/app-header";
 import Footer from "@/components/layout/footer";
-
-// Force dynamic rendering to avoid pre-rendering issues
-export const dynamic = 'force-dynamic';
 
 export default function LibraryPage() {
   const readingList = [
@@ -121,7 +118,7 @@ export default function LibraryPage() {
           <Card>
             <CardContent className="p-6 text-center">
               <div className="h-8 w-8 mx-auto mb-2 bg-purple-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">â™¥</span>
+                <span className="text-white font-bold text-sm">♥</span>
               </div>
               <p className="text-2xl font-bold">8</p>
               <p className="text-sm text-gray-600">Favorites</p>
@@ -231,7 +228,7 @@ export default function LibraryPage() {
                         {story.title}
                       </CardTitle>
                       <div className="text-red-500">
-                        <span className="text-lg">â™¥</span>
+                        <span className="text-lg">♥</span>
                       </div>
                     </div>
                     <p className="text-gray-600">by {story.author}</p>
@@ -270,7 +267,7 @@ export default function LibraryPage() {
                           </Button>
                         </Link>
                         <Button variant="outline" size="sm" className="px-2">
-                          <span className="text-red-500">â™¥</span>
+                          <span className="text-red-500">♥</span>
                         </Button>
                       </div>
                     </div>
