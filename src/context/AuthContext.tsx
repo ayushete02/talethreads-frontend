@@ -14,7 +14,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Pages that don't require authentication
-const publicRoutes = ['/', '/login', '/signup'];
+const publicRoutes = ['/', '/login', '/signup', '/about', '/help'];
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { isConnected } = useAccount();
@@ -26,27 +26,38 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     setHasMounted(true);
-    setIsLoading(false);
+    // Add a small delay to ensure all components are mounted
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     // Skip authentication check while loading or not mounted
     if (isLoading || !hasMounted) return;
 
-    const isPublicRoute = publicRoutes.includes(pathname);
+    const isPublicRoute = publicRoutes.includes(pathname) || 
+                          pathname.startsWith('/help/') || 
+                          pathname.startsWith('/about/');
     
-    // If user is not connected and trying to access a protected route
-    if (!isConnected && !isPublicRoute) {
+    // If user is on a public route (login, signup, etc.), allow access
+    if (isPublicRoute) {
+      // Only redirect authenticated users away from auth pages
+      // Don't redirect unauthenticated users from signup/login pages
+      if (isConnected && (pathname === '/login' || pathname === '/signup')) {
+        const targetPath = redirectPath || '/home';
+        setRedirectPath(null);
+        router.push(targetPath);
+      }
+      return; // Always return here for public routes, don't continue with auth checks
+    }
+    
+    // Only redirect to login if user is not connected AND trying to access a protected route
+    if (!isConnected) {
       setRedirectPath(pathname);
       router.push('/login');
-      return;
-    }
-
-    // If user is connected and on login/signup page, redirect appropriately
-    if (isConnected && (pathname === '/login' || pathname === '/signup')) {
-      const targetPath = redirectPath || '/home';
-      setRedirectPath(null);
-      router.push(targetPath);
       return;
     }
   }, [isConnected, pathname, router, isLoading, redirectPath, hasMounted]);
