@@ -1,8 +1,7 @@
 ﻿import Link from 'next/link';
 import { Search, Bell, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
 
 export default function ForYouPage() {
   const personalizedStories = Array.from({ length: 12 }, (_, i) => ({
@@ -14,8 +13,9 @@ export default function ForYouPage() {
   }));
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
+    <ProtectedRoute>
+      <div className="min-h-screen bg-gray-50">
+        {/* Header */}
       <header className="bg-gray-800 text-white p-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -137,7 +137,8 @@ export default function ForYouPage() {
             <a href="#" className="hover:text-gray-800">Community Guidelines</a>
           </div>
         </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+    </ProtectedRoute>
   );
 }

@@ -1,7 +1,7 @@
 import AppHeader from "@/components/layout/app-header";
 import Footer from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
-
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
 export default function HomePage() {
   const stories = Array.from({ length: 10 }, (_, i) => ({
@@ -15,18 +15,19 @@ export default function HomePage() {
   }));
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <AppHeader currentPage="home" />
+    <ProtectedRoute>
+      <div className="min-h-screen bg-gray-50">
+        <AppHeader currentPage="home" />
 
-      <main className="max-w-6xl mx-auto p-6">
-        {/* Featured Stories - Wireframe */}
-        <section className="mb-8">
-          <div className="border-2 border-dashed border-gray-300 p-6 mb-6">
-            <div className="h-32 border border-gray-300 flex items-center justify-center">
-              <p className="text-gray-500 text-sm">Featured Story Banner</p>
+        <main className="max-w-6xl mx-auto p-6">
+          {/* Featured Stories - Wireframe */}
+          <section className="mb-8">
+            <div className="border-2 border-dashed border-gray-300 p-6 mb-6">
+              <div className="h-32 border border-gray-300 flex items-center justify-center">
+                <p className="text-gray-500 text-sm">Featured Story Banner</p>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
         {/* Continue Reading Section */}
         <section className="mb-8">
@@ -103,7 +104,8 @@ export default function HomePage() {
         </section>
       </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </ProtectedRoute>
   );
 }

@@ -1,4 +1,8 @@
+'use client';
+
 import Link from "next/link";
+import Image from "next/image";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export default function SignUpPage() {
   return (
@@ -79,6 +83,109 @@ export default function SignUpPage() {
             Login
           </Link>
         </p>
+      </div>
+
+      {/* Web3 Connect Button */}
+      <div className="mb-6">
+        <ConnectButton.Custom>
+          {({
+            account,
+            chain,
+            openAccountModal,
+            openChainModal,
+            openConnectModal,
+            authenticationStatus,
+            mounted,
+          }) => {
+            const ready = mounted && authenticationStatus !== 'loading';
+            const connected =
+              ready &&
+              account &&
+              chain &&
+              (!authenticationStatus ||
+                authenticationStatus === 'authenticated');
+
+            return (
+              <div
+                {...(!ready && {
+                  'aria-hidden': true,
+                  'style': {
+                    opacity: 0,
+                    pointerEvents: 'none',
+                    userSelect: 'none',
+                  },
+                })}
+              >
+                {(() => {
+                  if (!connected) {
+                    return (
+                      <button 
+                        onClick={openConnectModal} 
+                        className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                      >
+                        Connect Wallet to Sign Up
+                      </button>
+                    );
+                  }
+
+                  if (chain.unsupported) {
+                    return (
+                      <button 
+                        onClick={openChainModal} 
+                        className="w-full bg-red-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-red-700 transition-colors"
+                      >
+                        Wrong network
+                      </button>
+                    );
+                  }
+
+                  return (
+                    <div className="flex gap-2">
+                      <button
+                        onClick={openChainModal}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        {chain.hasIcon && (
+                          <div
+                            style={{
+                              background: chain.iconBackground,
+                              width: 12,
+                              height: 12,
+                              borderRadius: 999,
+                              overflow: 'hidden',
+                            }}
+                          >
+                            {chain.iconUrl && (
+                              <Image
+                                alt={chain.name ?? 'Chain icon'}
+                                src={chain.iconUrl}
+                                width={12}
+                                height={12}
+                              />
+                            )}
+                          </div>
+                        )}
+                        <span className="text-gray-700 font-medium">{chain.name}</span>
+                      </button>
+
+                      <button
+                        onClick={openAccountModal}
+                        className="flex-1 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        <span className="text-gray-700 font-medium">
+                          {account.displayName}
+                          {account.displayBalance
+                            ? ` (${account.displayBalance})`
+                            : ''}
+                        </span>
+                      </button>
+                    </div>
+                  );
+                })()}
+              </div>
+            );
+          }}
+        </ConnectButton.Custom>
       </div>
 
       {/* Divider */}

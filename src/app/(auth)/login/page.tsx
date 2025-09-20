@@ -1,7 +1,11 @@
-﻿import Link from "next/link";
+﻿'use client';
+
+import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export default function LoginPage() {
   return (
@@ -44,6 +48,121 @@ export default function LoginPage() {
               Login
             </Link>
           </p>
+        </div>
+
+        {/* Divider */}
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-300"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-4 bg-white text-gray-500">OR</span>
+          </div>
+        </div>
+
+        {/* Web3 Connect Button */}
+        <div className="w-full">
+          <ConnectButton.Custom>
+            {({
+              account,
+              chain,
+              openAccountModal,
+              openChainModal,
+              openConnectModal,
+              authenticationStatus,
+              mounted,
+            }) => {
+              const ready = mounted && authenticationStatus !== 'loading';
+              const connected =
+                ready &&
+                account &&
+                chain &&
+                (!authenticationStatus ||
+                  authenticationStatus === 'authenticated');
+
+              return (
+                <div
+                  {...(!ready && {
+                    'aria-hidden': true,
+                    'style': {
+                      opacity: 0,
+                      pointerEvents: 'none',
+                      userSelect: 'none',
+                    },
+                  })}
+                >
+                  {(() => {
+                    if (!connected) {
+                      return (
+                        <Button 
+                          onClick={openConnectModal} 
+                          className="w-full bg-blue-600 hover:bg-blue-700"
+                        >
+                          Connect Wallet to Login
+                        </Button>
+                      );
+                    }
+
+                    if (chain.unsupported) {
+                      return (
+                        <Button 
+                          onClick={openChainModal} 
+                          variant="destructive"
+                          className="w-full"
+                        >
+                          Wrong network
+                        </Button>
+                      );
+                    }
+
+                    return (
+                      <div className="flex gap-2">
+                        <Button
+                          onClick={openChainModal}
+                          variant="outline"
+                          className="flex-1"
+                        >
+                          {chain.hasIcon && (
+                            <div
+                              style={{
+                                background: chain.iconBackground,
+                                width: 12,
+                                height: 12,
+                                borderRadius: 999,
+                                overflow: 'hidden',
+                                marginRight: 4,
+                              }}
+                            >
+                              {chain.iconUrl && (
+                                <Image
+                                  alt={chain.name ?? 'Chain icon'}
+                                  src={chain.iconUrl}
+                                  width={12}
+                                  height={12}
+                                />
+                              )}
+                            </div>
+                          )}
+                          {chain.name}
+                        </Button>
+
+                        <Button
+                          onClick={openAccountModal}
+                          variant="outline"
+                          className="flex-1"
+                        >
+                          {account.displayName}
+                          {account.displayBalance
+                            ? ` (${account.displayBalance})`
+                            : ''}
+                        </Button>
+                      </div>
+                    );
+                  })()}
+                </div>
+              );
+            }}
+          </ConnectButton.Custom>
         </div>
 
         {/* Divider */}

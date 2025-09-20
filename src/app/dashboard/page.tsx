@@ -13,8 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import AppHeader from "@/components/layout/app-header";
 import Footer from "@/components/layout/footer";
-
-
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
 export default function DashboardPage() {
   const stories = [
@@ -55,11 +54,12 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <AppHeader />
+    <ProtectedRoute>
+      <div className="min-h-screen bg-gray-50">
+        <AppHeader />
 
-      <main className="max-w-6xl mx-auto p-6">
-        {/* Header Section */}
+        <main className="max-w-6xl mx-auto p-6">
+          {/* Header Section */}
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-800">
@@ -275,7 +275,8 @@ export default function DashboardPage() {
         </div>
       </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </ProtectedRoute>
   );
 }

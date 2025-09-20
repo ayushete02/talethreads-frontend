@@ -1,14 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // output: 'export', // Re-enabling static export
-  output: 'export',
+  // Disabled static export for Web3 functionality
+  // output: 'export',
   trailingSlash: true,
   images: {
     unoptimized: true
   },
   experimental: {
     optimizePackageImports: ['lucide-react']
+  },
+  // Specify the correct root directory for Turbo
+  turbopack: {
+    root: __dirname
   }
 };
 
