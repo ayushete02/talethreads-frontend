@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Disabled static export for Web3 functionality
   // output: 'export',
-  trailingSlash: true,
+  trailingSlash: false,
   images: {
     unoptimized: true
   },
