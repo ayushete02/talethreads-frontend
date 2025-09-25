@@ -49,7 +49,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                           pathname === '/signup' || // Explicit check
                           pathname === '/login';   // Explicit check
     
+    const isOnboardingRoute = pathname.startsWith('/onboarding/');
+    
     console.log('AuthContext - Is public route:', isPublicRoute);
+    console.log('AuthContext - Is onboarding route:', isOnboardingRoute);
     
     // If user is on a public route (login, signup, etc.), allow access
     if (isPublicRoute) {
@@ -69,7 +72,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return; // Always return here for public routes, don't continue with auth checks
     }
     
-    console.log('AuthContext - Not on public route, checking auth...');
+    // If user is on an onboarding route and authenticated, allow access
+    if (isOnboardingRoute && isConnected) {
+      console.log('AuthContext - On onboarding route and authenticated, allowing access');
+      return;
+    }
+    
+    console.log('AuthContext - Not on public/onboarding route, checking auth...');
     
     // Only redirect to login if user is not connected AND trying to access a protected route
     if (!isConnected) {
