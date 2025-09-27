@@ -59,14 +59,22 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{
+          backgroundImage: "url(/assets/loginBG.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+          minHeight: "100vh",
+        }}
       >
-        <ClientOnly>
-          <Web3Provider>
+        <Web3Provider>
+          {children}
+          <ClientOnly>
             <ServiceWorkerProvider />
             <PWAInstallButton />
-            {children}
-          </Web3Provider>
-        </ClientOnly>
+          </ClientOnly>
+        </Web3Provider>
       </body>
     </html>
   );

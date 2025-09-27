@@ -1,0 +1,205 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple_choice",
+      "category": "humor",
+      "title": "What kind of humor do you enjoy?",
+      "subtitle": "Select all that apply",
+      "allowMultiple": true,
+      "options": [
+        {
+          "id": "witty-sarcastic",
+          "label": "Witty/Sarcastic",
+          "description": "Clever wordplay and ironic observations"
+        },
+        {
+          "id": "silly-slapstick",
+          "label": "Silly/Slapstick",
+          "description": "Physical comedy and absurd situations"
+        },
+        {
+          "id": "dark-humor",
+          "label": "Dark Humor",
+          "description": "Edgy and provocative comedy"
+        },
+        {
+          "id": "puns",
+          "label": "Puns",
+          "description": "Wordplay and clever language jokes"
+        },
+        {
+          "id": "no-humor",
+          "label": "No Humor",
+          "description": "Prefer serious content without comedy"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "single_choice",
+      "category": "reading_time",
+      "title": "How much time do you have for reading daily?",
+      "subtitle": "Select one that fits your schedule",
+      "allowMultiple": false,
+      "options": [
+        {
+          "id": "0-15",
+          "label": "0-15 minutes",
+          "description": "Quick reads during breaks"
+        },
+        {
+          "id": "15-30",
+          "label": "15-30 minutes",
+          "description": "Short dedicated reading sessions"
+        },
+        {
+          "id": "30-60",
+          "label": "30-60 minutes",
+          "description": "Moderate reading time"
+        },
+        {
+          "id": "60+",
+          "label": "1 hour +",
+          "description": "Extended reading sessions"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "multiple_choice",
+      "category": "story_preferences",
+      "title": "What type of stories do you prefer?",
+      "subtitle": "You can select multiple options",
+      "allowMultiple": true,
+      "options": [
+        {
+          "id": "short",
+          "label": "Short Stories",
+          "description": "Quick reads under 5 minutes"
+        },
+        {
+          "id": "medium",
+          "label": "Medium Stories",
+          "description": "5-15 minute reads"
+        },
+        {
+          "id": "long",
+          "label": "Long Stories",
+          "description": "15+ minute reads"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "multiple_choice",
+      "category": "genres",
+      "title": "Which genres interest you most?",
+      "subtitle": "Choose your favorite story genres",
+      "allowMultiple": true,
+      "options": [
+        {
+          "id": "fantasy",
+          "label": "Fantasy",
+          "description": "Magic, mythical creatures, and otherworldly adventures"
+        },
+        {
+          "id": "sci-fi",
+          "label": "Science Fiction",
+          "description": "Future technology, space, and scientific concepts"
+        },
+        {
+          "id": "romance",
+          "label": "Romance",
+          "description": "Love stories and relationships"
+        },
+        {
+          "id": "mystery",
+          "label": "Mystery",
+          "description": "Puzzles, detective work, and suspense"
+        },
+        {
+          "id": "horror",
+          "label": "Horror",
+          "description": "Scary and supernatural stories"
+        },
+        {
+          "id": "adventure",
+          "label": "Adventure",
+          "description": "Action-packed journeys and quests"
+        },
+        {
+          "id": "drama",
+          "label": "Drama",
+          "description": "Character-driven emotional stories"
+        },
+        {
+          "id": "comedy",
+          "label": "Comedy",
+          "description": "Funny and lighthearted stories"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "multiple_choice",
+      "category": "content_maturity",
+      "title": "What content maturity level do you prefer?",
+      "subtitle": "Help us recommend age-appropriate content",
+      "allowMultiple": true,
+      "options": [
+        {
+          "id": "family-friendly",
+          "label": "Family Friendly",
+          "description": "Content suitable for all ages"
+        },
+        {
+          "id": "teen",
+          "label": "Teen",
+          "description": "Content appropriate for teenagers"
+        },
+        {
+          "id": "mature",
+          "label": "Mature",
+          "description": "Adult themes and complex topics"
+        },
+        {
+          "id": "explicit",
+          "label": "Explicit",
+          "description": "Strong language, violence, or adult content"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "single_choice",
+      "category": "notification_preference",
+      "title": "How often would you like story recommendations?",
+      "subtitle": "We'll personalize your notification frequency",
+      "allowMultiple": false,
+      "options": [
+        {
+          "id": "daily",
+          "label": "Daily",
+          "description": "Get new stories every day"
+        },
+        {
+          "id": "weekly",
+          "label": "Weekly",
+          "description": "Weekly curated story collections"
+        },
+        {
+          "id": "monthly",
+          "label": "Monthly",
+          "description": "Monthly story highlights"
+        },
+        {
+          "id": "never",
+          "label": "Never",
+          "description": "I'll discover stories on my own"
+        }
+      ]
+    }
+  ],
+  "totalQuestions": 6
+}

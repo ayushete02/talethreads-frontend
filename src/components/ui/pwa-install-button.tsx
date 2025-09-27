@@ -17,6 +17,8 @@ export default function PWAInstallButton() {
 
   useEffect(() => {
     // Check if app is already installed
+    if (typeof window === "undefined") return;
+
     const isStandalone = window.matchMedia(
       "(display-mode: standalone)"
     ).matches;
@@ -37,18 +39,22 @@ export default function PWAInstallButton() {
       setDeferredPrompt(null);
     };
 
-    window.addEventListener(
-      "beforeinstallprompt",
-      handleBeforeInstallPrompt as EventListener
-    );
-    window.addEventListener("appinstalled", handleAppInstalled);
-
-    return () => {
-      window.removeEventListener(
+    if (typeof window !== "undefined") {
+      window.addEventListener(
         "beforeinstallprompt",
         handleBeforeInstallPrompt as EventListener
       );
-      window.removeEventListener("appinstalled", handleAppInstalled);
+      window.addEventListener("appinstalled", handleAppInstalled);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener(
+          "beforeinstallprompt",
+          handleBeforeInstallPrompt as EventListener
+        );
+        window.removeEventListener("appinstalled", handleAppInstalled);
+      }
     };
   }, []);
 
