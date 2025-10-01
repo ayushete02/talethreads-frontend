@@ -8,7 +8,7 @@ const comicCovers = [
     id: "bravest-warriors",
     title: "BRAVEST WARRIORS",
     image: "/assets/reding-preference/bravest-warriors.png",
-    colors: "from-red-400 to-orange-400",
+    colors: "from-red-400 to-primary",
   },
   {
     id: "scott-pilgrim",
@@ -20,7 +20,7 @@ const comicCovers = [
     id: "peanuts",
     title: "PEANUTS",
     image: "/assets/reding-preference/peanuts.png",
-    colors: "from-yellow-400 to-orange-400",
+    colors: "from-yellow-400 to-primary",
   },
 ];
 
@@ -52,7 +52,7 @@ export default function ReadingPreferencePage() {
             onClick={() => handleTypeSelect("stories")}
             className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
               selectedType === "stories"
-                ? "bg-orange-400 text-white shadow-lg"
+                ? "bg-primary text-white shadow-lg"
                 : "bg-white text-gray-700 border border-gray-300 hover:border-gray-400"
             }`}
           >
@@ -62,7 +62,7 @@ export default function ReadingPreferencePage() {
             onClick={() => handleTypeSelect("comics")}
             className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
               selectedType === "comics"
-                ? "bg-orange-400 text-white shadow-lg"
+                ? "bg-primary text-white shadow-lg"
                 : "bg-white text-gray-700 border border-gray-300 hover:border-gray-400"
             }`}
           >

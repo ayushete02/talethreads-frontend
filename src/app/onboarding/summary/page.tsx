@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import questionsData from "@/data/onboarding-questions.json";
@@ -34,10 +34,7 @@ export default function OnboardingSummaryPage() {
 
   if (!isLoaded || !personaResult) {
     return (
-      <div
-        className="min-h-screen bg-cover bg-center bg-no-repeat relative flex items-center justify-center"
-        style={{ backgroundImage: `url('/assets/loginBG.jpg')` }}
-      >
+      <div className="min-h-screen bg-cover bg-center bg-no-repeat relative flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
           <p className="text-black">Discovering your persona...</p>
@@ -47,12 +44,7 @@ export default function OnboardingSummaryPage() {
   }
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat relative"
-      style={{
-        backgroundImage: `url('/assets/loginBG.jpg')`,
-      }}
-    >
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat relative">
       <div className="relative z-10 max-w-4xl mx-auto p-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -73,42 +65,46 @@ export default function OnboardingSummaryPage() {
             )
           }
         >
-          <ArrowLeft className="h-6 w-6" />
+          <ChevronLeft className="h-6 w-6" />
         </Button>
 
         {/* Persona Result Card */}
-        <div className="mb-8">
-          <Card className="bg-white/95 border-2 border-orange-200 shadow-2xl overflow-hidden">
-            <CardContent className="p-0">
-              {/* Persona Image and Title */}
-              <div className="relative p-8 text-center">
-                <h2 className="text-4xl font-bold text-black mb-2">
-                  {personaResult.name}
-                </h2>
-                <div className="relative w-64 h-64 mx-auto mb-6">
-                  <Image
-                    src={personaResult.image}
-                    alt={personaResult.name}
-                    fill
-                    className="object-contain rounded-full"
-                    priority
-                  />
-                </div>
+        <div className="mb-8 ">
+          <div className="bg-primary/30 rounded-4xl border-2 border-transparent w-full h-[60vh] shadow-2xl absolute rotate-[4deg]" />
+          <div className="bg-primary rounded-4xl border-2 border-transparent w-full h-[60vh] shadow-2xl absolute -rotate-[4deg]" />
+          <div className="bg-white rounded-4xl border-2 border-transparent w-full h-[60vh] shadow-2xl absolute " />
+          <div className="bg-transparent flex items-center absolute border-none w-full h-[60vh] rounded-4xl  ">
+            {/* Persona Image and Title */}
+            <div className="relative px-32 flex-col  text-center">
+              <h2 className="text-4xl font-bold text-black mb-2">
+                {personaResult.name}
+              </h2>
+              <div className="relative w-64 h-64 mx-auto ">
+                <Image
+                  src={personaResult.image}
+                  alt={personaResult.name}
+                  fill
+                  className="object-contain rounded-full"
+                  priority
+                />
               </div>
-              {/* Persona Description */}
-              <div className="p-8">
-                <div className="text-center mb-8">
-                  <p className="text-lg text-black/80 leading-relaxed">
-                    {personaResult.description}
-                  </p>
-                </div>
+
+              <div className="text-center ">
+                <p className="text-lg text-black/80 leading-relaxed">
+                  {personaResult.description}
+                </p>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
 
-        <div className="text-center">
-          <Button onClick={handleFinishOnboarding}>Explore Stories</Button>
+        <div className="absolute mt-[70vh] w-full flex justify-center text-center">
+          <Button
+            className="bg-black hover:bg-black/80 text-white rounded-full py-4 px-10"
+            onClick={handleFinishOnboarding}
+          >
+            Explore Stories
+          </Button>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import questionsData from "@/data/onboarding-questions.json";
 import { Question, QuestionsData } from "@/types/onboarding";
@@ -81,45 +81,26 @@ export default function OnboardingQuestionPage() {
 
   if (!currentQuestion) {
     return (
-      <div
-        className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
-        style={{
-          backgroundImage: `url('/assets/loginBG.jpg')`,
-        }}
-      >
+      <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-4"></div>
-          <p className="text-white/80">Loading question...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black mx-auto mb-4"></div>
+          <p className="text-black/80">Loading question...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4"
-      style={{
-        backgroundImage: `url('/assets/loginBG.jpg')`,
-      }}
-    >
-      <div className="w-full max-w-md mx-auto">
-        {/* Back Button */}
-        <Button
-          variant="ghost"
-          className="absolute top-6 left-6 text-white/80 hover:text-white p-2"
-          onClick={handleBack}
-        >
-          <ArrowLeft className="h-5 w-5" />
-        </Button>
-
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4">
+      <div className="w-full max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-white mb-2">Tale Threads</h1>
+          <h1 className="text-2xl font-bold text-black mb-2">Tale Threads</h1>
         </div>
 
         {/* Progress */}
         <div className="text-center mb-8">
-          <p className="text-xs text-white/80 mb-2 tracking-wider font-medium">
+          <p className="text-xs text-black/80 mb-2 tracking-wider font-medium">
             QUESTIONS {questionNumber}/
             {(questionsData as QuestionsData).totalQuestions}
           </p>
@@ -127,7 +108,15 @@ export default function OnboardingQuestionPage() {
 
         {/* Question */}
         <div className="text-center mb-8">
-          <h2 className="text-xl font-bold text-white mb-6">
+          <h2 className="text-2xl font-bold text-black mb-6">
+            {/* Back Button */}
+            <Button
+              variant="ghost"
+              className=" hover:bg-transparent text-black/80 hover:text-black p-0"
+              onClick={handleBack}
+            >
+              <ChevronLeft size={24} />
+            </Button>{" "}
             {currentQuestion.title}
           </h2>
 
@@ -136,30 +125,30 @@ export default function OnboardingQuestionPage() {
               <button
                 key={option.id}
                 onClick={() => handleAnswerToggle(option.id)}
-                className={`w-full p-4 rounded-full text-left flex items-center transition-all duration-200 border-2 ${
+                className={`w-full p-4 rounded-full border-black text-left flex items-center transition-all duration-200 border-2 ${
                   selectedAnswers.includes(option.id)
-                    ? "bg-orange-400 text-black font-medium border-orange-400"
-                    : "bg-white text-gray-700 hover:bg-gray-50 border-gray-200 hover:border-gray-300"
+                    ? "bg-primary text-black font-medium "
+                    : "bg-white text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 <div
                   className={`w-5 h-5 mr-4 flex items-center justify-center ${
                     currentQuestion.allowMultiple
-                      ? `rounded border-2 ${
+                      ? `rounded-full border-2 ${
                           selectedAnswers.includes(option.id)
-                            ? "border-black bg-black"
-                            : "border-gray-400"
+                            ? "border-black bg-transparent"
+                            : "border-black"
                         }`
                       : `rounded-full border-2 ${
                           selectedAnswers.includes(option.id)
-                            ? "border-black bg-black"
-                            : "border-gray-400"
+                            ? "border-black bg-transparent"
+                            : "border-black"
                         }`
                   }`}
                 >
                   {selectedAnswers.includes(option.id) && (
                     <div
-                      className={`bg-white ${
+                      className={`bg-black ${
                         currentQuestion.allowMultiple
                           ? "w-2 h-2 rounded-sm"
                           : "w-2 h-2 rounded-full"
@@ -175,7 +164,7 @@ export default function OnboardingQuestionPage() {
           <Button
             onClick={handleNext}
             disabled={selectedAnswers.length === 0}
-            className="w-full py-3 bg-black text-white rounded-full hover:bg-gray-800 text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-24 py-5 bg-black flex justify-self-end text-white rounded-full hover:bg-gray-800 text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {questionNumber < (questionsData as QuestionsData).totalQuestions
               ? "Next"
