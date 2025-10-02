@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import ServiceWorkerProvider from "@/components/service-worker-provider";
@@ -7,14 +7,12 @@ import PWAInstallButton from "@/components/ui/pwa-install-button";
 import { Web3Provider } from "@/components/providers/Web3Provider";
 import ClientOnly from "@/components/ClientOnly";
 
-const geistSans = Geist({
+const dmSans = localFont({
+  src: "../../public/font/DMSans_18pt-Regular.ttf",
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: "400",
+  style: "normal",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -58,7 +56,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/icon.svg" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${dmSans.variable} antialiased`}
         style={{
           backgroundImage:
             'linear-gradient(rgba(248, 240, 229, 0.8), rgba(248, 240, 229, 0.8)), url("/assets/mainBG.jpg")',

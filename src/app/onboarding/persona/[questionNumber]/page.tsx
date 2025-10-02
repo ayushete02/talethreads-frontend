@@ -95,7 +95,9 @@ export default function OnboardingQuestionPage() {
       <div className="w-full max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-black mb-2">Tale Threads</h1>
+          <h1 className="text-2xl font-bold font-benrock  text-black mb-2">
+            Tale Threads
+          </h1>
         </div>
 
         {/* Progress */}
