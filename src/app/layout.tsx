@@ -60,7 +60,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         style={{
-          backgroundImage: "url(/assets/mainBG.jpg)",
+          backgroundImage:
+            'linear-gradient(rgba(248, 240, 229, 0.8), rgba(248, 240, 229, 0.8)), url("/assets/mainBG.jpg")',
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
