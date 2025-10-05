@@ -1,7 +1,15 @@
-'use client';
+"use client";
 
 import Link from "next/link";
-import { Search, Bell, User, PenTool, ChevronDown, Menu, Wallet } from "lucide-react";
+import {
+  Search,
+  Bell,
+  User,
+  PenTool,
+  ChevronDown,
+  Menu,
+  Wallet,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAccount, useDisconnect } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -29,14 +37,33 @@ export default function AppHeader({ currentPage }: HeaderProps) {
   };
 
   return (
-    <header className="bg-gray-800 text-white p-4">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Link href="/home" className="font-bold text-xl">
-            TaleThreads
-          </Link>
-        </div>
+    <header className="bg-primary text-white p-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4">
+            <Link href="/home" className="font-bold text-xl">
+              TaleThreads
+            </Link>
+          </div>
 
+          <nav className="hidden md:flex items-center gap-6">
+            <Link href="/categories" className={getNavLinkClass("categories")}>
+              CATEGORIES
+            </Link>
+            <Link href="/ranking" className={getNavLinkClass("ranking")}>
+              RANKING
+            </Link>
+            <Link href="/for-you" className={getNavLinkClass("for-you")}>
+              FOR YOU
+            </Link>
+            <Link
+              href="/profile/library"
+              className="hover:text-gray-300 transition-colors"
+            >
+              LIBRARY
+            </Link>
+          </nav>
+        </div>
         {/* Mobile Menu Button */}
         <div className="md:hidden">
           <div className="relative group">
@@ -116,7 +143,7 @@ export default function AppHeader({ currentPage }: HeaderProps) {
                   <div className="px-4 py-2">
                     <ConnectButton.Custom>
                       {({ openConnectModal }) => (
-                        <Button 
+                        <Button
                           onClick={openConnectModal}
                           variant="outline"
                           size="sm"
@@ -132,24 +159,6 @@ export default function AppHeader({ currentPage }: HeaderProps) {
             </div>
           </div>
         </div>
-
-        <nav className="hidden md:flex items-center gap-6">
-          <Link href="/categories" className={getNavLinkClass("categories")}>
-            CATEGORIES
-          </Link>
-          <Link href="/ranking" className={getNavLinkClass("ranking")}>
-            RANKING
-          </Link>
-          <Link href="/for-you" className={getNavLinkClass("for-you")}>
-            FOR YOU
-          </Link>
-          <Link
-            href="/profile/library"
-            className="hover:text-gray-300 transition-colors"
-          >
-            LIBRARY
-          </Link>
-        </nav>
 
         <div className="flex items-center gap-4">
           <Link href="/search">
@@ -273,7 +282,7 @@ export default function AppHeader({ currentPage }: HeaderProps) {
             <div className="flex items-center gap-2">
               <ConnectButton.Custom>
                 {({ openConnectModal }) => (
-                  <Button 
+                  <Button
                     onClick={openConnectModal}
                     variant="outline"
                     size="sm"

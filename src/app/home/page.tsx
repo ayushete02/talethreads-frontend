@@ -16,15 +16,25 @@ export default function HomePage() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <AppHeader currentPage="home" />
 
-        <main className="max-w-6xl mx-auto p-6">
-          {/* Featured Stories - Wireframe */}
+        <main className="">
+          {/* Featured Stories Banner */}
           <section className="mb-8">
-            <div className="border-2 border-dashed border-gray-300 p-6 mb-6">
-              <div className="h-32 border border-gray-300 flex items-center justify-center">
-                <p className="text-gray-500 text-sm">Featured Story Banner</p>
+            <div 
+              className="relative h-[85vh] overflow-hidden bg-cover bg-center "
+              style={{ backgroundImage: 'url(/assets/banner/banner.jpg)' }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-background/100 via-background/30 to-transparent">
+                <div className="absolute bottom-6 left-8">
+                  <h1 className="text-9xl font-bold mb-4 text-black font-benrock tracking-wider">STORY NAME</h1>
+                  <Button 
+                    className="bg-[#FF9500] hover:bg-[#FF9500]/90 text-black font-bold px-8 py-3 rounded-md transition-colors uppercase text-sm"
+                  >
+                    START READING
+                  </Button>
+                </div>
               </div>
             </div>
           </section>
