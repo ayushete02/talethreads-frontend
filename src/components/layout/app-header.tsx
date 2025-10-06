@@ -235,7 +235,7 @@ export default function AppHeader({ currentPage }: HeaderProps) {
                     Connected Wallet
                   </div>
                   <div className="px-4 py-2 text-sm font-mono text-gray-900 bg-gray-50">
-                    {address}
+                    {address?.slice(0, 6)}...{address?.slice(-4)}
                   </div>
                   <hr className="my-1" />
                   <Link
