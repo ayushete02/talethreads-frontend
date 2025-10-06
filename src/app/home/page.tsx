@@ -3,6 +3,7 @@ import Footer from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
 import StoryCard from "@/components/features/StoryCard";
+import ScrollableSection from "@/components/features/ScrollableSection";
 
 export default function HomePage() {
   const stories = Array.from({ length: 10 }, (_, i) => ({
@@ -42,91 +43,100 @@ export default function HomePage() {
           </section>
 
           {/* Continue Reading Section */}
-          <section className="mb-12 px-4 md:px-6">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-4xl font-bold text-black font-benrock">
-                Continue Reading
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {stories.slice(0, 5).map((story) => (
-                <StoryCard
-                  key={story.id}
-                  id={story.id}
-                  title={story.title}
-                  genre={story.genre}
-                  coverImage={story.coverImage}
-                  progress={story.progress}
-                  showProgress={true}
-                  cardInfo={false}
-                />
-              ))}
-            </div>
-          </section>
+          <ScrollableSection title="Continue Reading">
+            {stories.slice(0, 10).map((story) => (
+              <StoryCard
+                key={story.id}
+                id={story.id}
+                title={story.title}
+                genre={story.genre}
+                coverImage={story.coverImage}
+                progress={story.progress}
+                showProgress={true}
+                cardInfo={false}
+              />
+            ))}
+          </ScrollableSection>
 
           {/* Recommended Stories */}
-          <section className="mb-12 px-4 md:px-6">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-4xl font-bold text-black font-benrock">
-                Trending
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {stories.slice(0, 5).map((story, index) => (
-                <StoryCard
-                  key={story.id}
-                  id={story.id}
-                  title={story.title}
-                  genre={story.genre}
-                  coverImage={story.coverImage}
-                  rank={index + 1}
-                  showRank={true}
-                  cardInfo={true}
-                />
-              ))}
-            </div>
-          </section>
+          <ScrollableSection title="Trending" showAllLink="/ranking">
+            {stories.slice(0, 9).map((story, index) => (
+              <StoryCard
+                key={story.id}
+                id={story.id}
+                title={story.title}
+                genre={story.genre}
+                coverImage={story.coverImage}
+                rank={index + 1}
+                showRank={true}
+                cardInfo={true}
+              />
+            ))}
+          </ScrollableSection>
 
           {/* Top Picks For You Section */}
-          <section className="mb-12 px-4 md:px-6">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-4xl font-bold text-black font-benrock">
-                Top Picks For You
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {stories.slice(0, 5).map((story) => (
-                <StoryCard
-                  key={story.id}
-                  id={story.id}
-                  title={story.title}
-                  genre={story.genre}
-                  coverImage={story.coverImage}
-                />
-              ))}
-            </div>
-          </section>
+          <ScrollableSection title="Top Picks For You" showAllLink="/for-you">
+            {stories.slice(0, 9).map((story) => (
+              <StoryCard
+                key={story.id}
+                id={story.id}
+                title={story.title}
+                genre={story.genre}
+                coverImage={story.coverImage}
+              />
+            ))}
+          </ScrollableSection>
 
           {/* Newly Released Section */}
+          <ScrollableSection
+            title="Newly Released"
+            showAllLink="/categories?filter=new"
+          >
+            {stories.slice(0, 9).map((story) => (
+              <StoryCard
+                key={story.id}
+                id={story.id}
+                title={story.title}
+                genre={story.genre}
+                coverImage={story.coverImage}
+                size="large"
+              />
+            ))}
+          </ScrollableSection>
+
+          {/* Categories Section */}
           <section className="mb-12 px-4 md:px-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-4xl font-bold text-black font-benrock">
-                Newly Released
+                Categories
               </h2>
+              <button className="text-primary font-semibold text-sm hover:underline">
+                See more
+              </button>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {stories.slice(0, 5).map((story) => (
-                <StoryCard
-                  key={story.id}
-                  id={story.id}
-                  title={story.title}
-                  genre={story.genre}
-                  coverImage={story.coverImage}
-                />
+            <div className="flex gap-4 overflow-x-auto scrollbar-hide">
+              {[
+                { name: "ROMANCE", icon: "❤️" },
+                { name: "COMEDY", icon: "😄" },
+                { name: "FANTASY", icon: "🎭" },
+                { name: "DRAMA", icon: "🎭" },
+                { name: "SCI FI", icon: "🚀" },
+                { name: "HORROR", icon: "👻" },
+                { name: "THRILLER", icon: "🖌️" },
+                { name: "ADVENTURE", icon: "⛑️" },
+              ].map((category) => (
+                <div
+                  key={category.name}
+                  className="flex flex-col items-center min-w-[100px] cursor-pointer group"
+                >
+                  <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center mb-2 group-hover:bg-primary/80 transition-colors">
+                    <span className="text-3xl">{category.icon}</span>
+                  </div>
+                  <span className="text-sm font-bold text-black text-center">
+                    {category.name}
+                  </span>
+                </div>
               ))}
             </div>
           </section>
