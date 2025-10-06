@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
 import StoryCard from "@/components/features/StoryCard";
 import ScrollableSection from "@/components/features/ScrollableSection";
+import Link from "next/link";
 
 export default function HomePage() {
   const stories = Array.from({ length: 10 }, (_, i) => ({
@@ -16,6 +17,17 @@ export default function HomePage() {
     progress: Math.floor(Math.random() * 100),
     coverImage: "/assets/reding-preference/scott-piligrim.png",
   }));
+
+  const categories = [
+    { id: "romance", name: "ROMANCE", icon: "❤️" },
+    { id: "comedy", name: "COMEDY", icon: "😄" },
+    { id: "fantasy", name: "FANTASY", icon: "🎭" },
+    { id: "drama", name: "DRAMA", icon: "🎭" },
+    { id: "sci-fi", name: "SCI FI", icon: "🚀" },
+    { id: "horror", name: "HORROR", icon: "👻" },
+    { id: "thriller", name: "THRILLER", icon: "🖌️" },
+    { id: "adventure", name: "ADVENTURE", icon: "⛑️" },
+  ];
 
   return (
     <ProtectedRoute>
@@ -110,33 +122,28 @@ export default function HomePage() {
               <h2 className="text-4xl font-bold text-black font-benrock">
                 Categories
               </h2>
-              <button className="text-primary font-semibold text-sm hover:underline">
-                See more
-              </button>
+              <Link href="/categories">
+                <button className="text-primary font-semibold text-sm hover:underline">
+                  See more
+                </button>
+              </Link>
             </div>
 
             <div className="flex gap-4 overflow-x-auto scrollbar-hide">
-              {[
-                { name: "ROMANCE", icon: "❤️" },
-                { name: "COMEDY", icon: "😄" },
-                { name: "FANTASY", icon: "🎭" },
-                { name: "DRAMA", icon: "🎭" },
-                { name: "SCI FI", icon: "🚀" },
-                { name: "HORROR", icon: "👻" },
-                { name: "THRILLER", icon: "🖌️" },
-                { name: "ADVENTURE", icon: "⛑️" },
-              ].map((category) => (
-                <div
-                  key={category.name}
-                  className="flex flex-col items-center min-w-[100px] cursor-pointer group"
+              {categories.map((category) => (
+                <Link
+                  key={category.id}
+                  href={`/categories?category=${category.id}`}
                 >
-                  <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center mb-2 group-hover:bg-primary/80 transition-colors">
-                    <span className="text-3xl">{category.icon}</span>
+                  <div className="flex flex-col items-center min-w-[100px] cursor-pointer group">
+                    <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center mb-2 group-hover:bg-primary/80 transition-colors">
+                      <span className="text-3xl">{category.icon}</span>
+                    </div>
+                    <span className="text-sm font-bold text-black text-center">
+                      {category.name}
+                    </span>
                   </div>
-                  <span className="text-sm font-bold text-black text-center">
-                    {category.name}
-                  </span>
-                </div>
+                </Link>
               ))}
             </div>
           </section>

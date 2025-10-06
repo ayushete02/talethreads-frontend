@@ -1,273 +1,134 @@
-import { TrendingUp, TrendingDown, Crown, Star, Eye } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AppHeader from "@/components/layout/app-header";
 import Footer from "@/components/layout/footer";
-import StoryCard from "@/components/ui/story-card";
-
-
+import StoryCard from "@/components/features/StoryCard";
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
 const rankings = [
   {
     rank: 1,
-    title: "The Last Echo",
-    author: "Sarah Mitchell",
+    title: "Title of the story",
+    genre: "Genre",
+    author: "Author Name",
     views: "234K",
     score: 9.8,
-    change: 2,
+    coverImage: "/assets/reding-preference/scott-piligrim.png",
   },
   {
     rank: 2,
-    title: "Digital Dreams",
-    author: "Alex Chen",
+    title: "Title of the story",
+    genre: "Genre",
+    author: "Author Name",
     views: "189K",
     score: 9.6,
-    change: -1,
+    coverImage: "/assets/reding-preference/bravest-warriors.png",
   },
   {
     rank: 3,
-    title: "Beyond the Veil",
-    author: "Emma Rodriguez",
+    title: "Title of the story",
+    genre: "Genre",
+    author: "Author Name",
     views: "156K",
     score: 9.5,
-    change: 1,
+    coverImage: "/assets/reding-preference/scott-piligrim.png",
   },
   {
     rank: 4,
-    title: "Quantum Hearts",
-    author: "David Park",
+    title: "Title of the story",
+    genre: "Genre",
+    author: "Author Name",
     views: "134K",
     score: 9.4,
-    change: 0,
+    coverImage: "/assets/reding-preference/peanuts.png",
   },
   {
     rank: 5,
-    title: "Silent Storm",
-    author: "Lisa Wong",
+    title: "Title of the story",
+    genre: "Genre",
+    author: "Author Name",
     views: "112K",
     score: 9.3,
-    change: -2,
+    coverImage: "/assets/reding-preference/scott-piligrim.png",
   },
-];
-
-const categories = [
-  { name: "Sci-Fi", count: 1234, trending: true },
-  { name: "Fantasy", count: 987, trending: false },
-  { name: "Romance", count: 876, trending: true },
-  { name: "Thriller", count: 654, trending: false },
-  { name: "Horror", count: 432, trending: true },
+  {
+    rank: 6,
+    title: "Title of the story",
+    genre: "Genre",
+    author: "Author Name",
+    views: "98K",
+    score: 9.2,
+    coverImage: "/assets/reding-preference/bravest-warriors.png",
+  },
+  {
+    rank: 7,
+    title: "Title of the story",
+    genre: "Genre",
+    author: "Author Name",
+    views: "87K",
+    score: 9.1,
+    coverImage: "/assets/reding-preference/scott-piligrim.png",
+  },
+  {
+    rank: 8,
+    title: "Title of the story",
+    genre: "Genre",
+    author: "Author Name",
+    views: "76K",
+    score: 9.0,
+    coverImage: "/assets/reding-preference/peanuts.png",
+  },
+  {
+    rank: 9,
+    title: "Title of the story",
+    genre: "Genre",
+    author: "Author Name",
+    views: "65K",
+    score: 8.9,
+    coverImage: "/assets/reding-preference/scott-piligrim.png",
+  },
+  {
+    rank: 10,
+    title: "Title of the story",
+    genre: "Genre",
+    author: "Author Name",
+    views: "54K",
+    score: 8.8,
+    coverImage: "/assets/reding-preference/bravest-warriors.png",
+  },
 ];
 
 export default function RankingPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <AppHeader />
+    <ProtectedRoute>
+      <div className="min-h-screen bg-background">
+        <AppHeader currentPage="ranking" />
 
-      <div className="max-w-6xl mx-auto p-6">
-        {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold mb-2">Story Rankings</h1>
-          <p className="text-gray-600">Popular stories by category</p>
-        </div>
-
-        {/* Stats Overview */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className="border border-gray-300 p-4 text-center">
-            <p className="text-xl font-bold">2,543</p>
-            <p className="text-sm text-gray-600">Total Stories</p>
+        <main className="max-w-7xl mx-auto px-4 md:px-6 py-8">
+          {/* Page Header */}
+          <div className="mb-8">
+            <h1 className="text-5xl font-bold text-black font-benrock mb-2">
+              Trending
+            </h1>
           </div>
 
-          <div className="border border-gray-300 p-4 text-center">
-            <p className="text-xl font-bold">1.2M</p>
-            <p className="text-sm text-gray-600">Total Views</p>
+          {/* Stories Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {rankings.map((story) => (
+              <StoryCard
+                key={story.rank}
+                id={story.rank}
+                title={story.title}
+                genre={story.genre}
+                coverImage={story.coverImage}
+                rank={story.rank}
+                showRank={true}
+                cardInfo={true}
+              />
+            ))}
           </div>
+        </main>
 
-          <div className="border border-gray-300 p-4 text-center">
-            <p className="text-xl font-bold">45K</p>
-            <p className="text-sm text-gray-600">Active Readers</p>
-          </div>
-
-          <div className="border border-gray-300 p-4 text-center">
-            <p className="text-xl font-bold">8.9</p>
-            <p className="text-sm text-gray-600">Avg Rating</p>
-          </div>
-        </div>
-
-        <Tabs defaultValue="overall" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="overall">Overall</TabsTrigger>
-            <TabsTrigger value="weekly">This Week</TabsTrigger>
-            <TabsTrigger value="monthly">This Month</TabsTrigger>
-            <TabsTrigger value="categories">Categories</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="overall" className="space-y-6">
-            <div className="grid gap-6 lg:grid-cols-3">
-              {/* Rankings List */}
-              <div className="lg:col-span-2">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Crown className="h-5 w-5 text-yellow-500" />
-                      Top Stories
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      {rankings.map((story) => (
-                        <div
-                          key={story.rank}
-                          className="flex items-center gap-4 p-4 border rounded-lg hover:bg-gray-50 transition-colors"
-                        >
-                          <div
-                            className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${
-                              story.rank <= 3
-                                ? "bg-yellow-100 text-yellow-800"
-                                : "bg-gray-100 text-gray-600"
-                            }`}
-                          >
-                            {story.rank}
-                          </div>
-
-                          <div className="flex-1">
-                            <h3 className="font-semibold text-gray-800">
-                              {story.title}
-                            </h3>
-                            <p className="text-sm text-gray-600">
-                              by {story.author}
-                            </p>
-                          </div>
-
-                          <div className="text-right">
-                            <div className="flex items-center gap-2 mb-1">
-                              <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                              <span className="font-medium">{story.score}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <Eye className="h-4 w-4" />
-                              <span>{story.views}</span>
-                            </div>
-                          </div>
-
-                          <div
-                            className={`flex items-center gap-1 text-sm ${
-                              story.change > 0
-                                ? "text-green-600"
-                                : story.change < 0
-                                ? "text-red-600"
-                                : "text-gray-600"
-                            }`}
-                          >
-                            {story.change > 0 && (
-                              <TrendingUp className="h-4 w-4" />
-                            )}
-                            {story.change < 0 && (
-                              <TrendingDown className="h-4 w-4" />
-                            )}
-                            {story.change !== 0 && Math.abs(story.change)}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* Trending Categories */}
-              <div>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Trending Categories</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      {categories.map((category) => (
-                        <div
-                          key={category.name}
-                          className="flex items-center justify-between"
-                        >
-                          <div className="flex items-center gap-2">
-                            <span className="font-medium">{category.name}</span>
-                            {category.trending && (
-                              <Badge variant="secondary" className="text-xs">
-                                Trending
-                              </Badge>
-                            )}
-                          </div>
-                          <span className="text-gray-600">
-                            {category.count}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="weekly" className="space-y-6">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {rankings.slice(0, 6).map((story) => (
-                <StoryCard
-                  key={story.title}
-                  id={story.rank}
-                  title={story.title}
-                  genre="Popular"
-                  author={story.author}
-                  rating={story.score}
-                  views={story.views}
-                  variant="featured"
-                />
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="monthly" className="space-y-6">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {rankings.map((story) => (
-                <StoryCard
-                  key={story.title}
-                  id={story.rank}
-                  title={story.title}
-                  genre="Monthly Top"
-                  author={story.author}
-                  rating={story.score}
-                  views={story.views}
-                  variant="compact"
-                />
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="categories" className="space-y-6">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {categories.map((category) => (
-                <Card
-                  key={category.name}
-                  className="cursor-pointer hover:shadow-lg transition-shadow"
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-xl font-semibold">{category.name}</h3>
-                      {category.trending && (
-                        <Badge className="bg-green-100 text-green-800">
-                          <TrendingUp className="h-3 w-3 mr-1" />
-                          Trending
-                        </Badge>
-                      )}
-                    </div>
-                    <p className="text-gray-600">{category.count} stories</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+        <Footer />
       </div>
-
-      <Footer />
-    </div>
+    </ProtectedRoute>
   );
 }
